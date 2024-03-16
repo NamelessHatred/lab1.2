@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище AgaModelContainer" CdmEntityContainer="AgaEntities">
+    <EntitySetMapping Name="KilledMeat">
+      <EntityTypeMapping TypeName="AgaModel.KilledMeat">
+        <MappingFragment StoreEntitySet="KilledMeat">
+          <ScalarProperty Name="ID_KilledMeat" ColumnName="ID_KilledMeat" />
+          <ScalarProperty Name="CName" ColumnName="CName" />
+          <ScalarProperty Name="CSureName" ColumnName="CSureName" />
+          <ScalarProperty Name="CMiddleName" ColumnName="CMiddleName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="AgaModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Id_OrdeDetail" ColumnName="Id_OrdeDetail" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="PartsOfBody_Id" ColumnName="PartsOfBody_Id" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="AgaModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Meat_Id" ColumnName="Meat_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartsOfBody">
+      <EntityTypeMapping TypeName="AgaModel.PartsOfBody">
+        <MappingFragment StoreEntitySet="PartsOfBody">
+          <ScalarProperty Name="ID_PartsOfBody" ColumnName="ID_PartsOfBody" />
+          <ScalarProperty Name="PartName" ColumnName="PartName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

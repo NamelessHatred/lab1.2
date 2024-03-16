@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AgaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="KilledMeat">
+          <Key>
+            <PropertyRef Name="ID_KilledMeat" />
+          </Key>
+          <Property Name="ID_KilledMeat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CSureName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id_OrdeDetail" />
+          </Key>
+          <Property Name="Id_OrdeDetail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_Id" Type="int" Nullable="false" />
+          <Property Name="PartsOfBody_Id" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="Meat_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartsOfBody">
+          <Key>
+            <PropertyRef Name="ID_PartsOfBody" />
+          </Key>
+          <Property Name="ID_PartsOfBody" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__OrderDeta__Order__52593CB8">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Parts__534D60F1">
+          <End Role="PartsOfBody" Type="Self.PartsOfBody" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartsOfBody">
+              <PropertyRef Name="ID_PartsOfBody" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="PartsOfBody_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Meat_Id__4F7CD00D">
+          <End Role="KilledMeat" Type="Self.KilledMeat" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KilledMeat">
+              <PropertyRef Name="ID_KilledMeat" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Meat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AgaModelContainer">
+          <EntitySet Name="KilledMeat" EntityType="Self.KilledMeat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartsOfBody" EntityType="Self.PartsOfBody" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderDeta__Order__52593CB8" Association="Self.FK__OrderDeta__Order__52593CB8">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Parts__534D60F1" Association="Self.FK__OrderDeta__Parts__534D60F1">
+            <End Role="PartsOfBody" EntitySet="PartsOfBody" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Meat_Id__4F7CD00D" Association="Self.FK__Orders__Meat_Id__4F7CD00D">
+            <End Role="KilledMeat" EntitySet="KilledMeat" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="KilledMeat">
+          <Key>
+            <PropertyRef Name="ID_KilledMeat" />
+          </Key>
+          <Property Name="ID_KilledMeat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Meat_Id__4F7CD00D" FromRole="KilledMeat" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id_OrdeDetail" />
+          </Key>
+          <Property Name="Id_OrdeDetail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Id" Type="Int32" Nullable="false" />
+          <Property Name="PartsOfBody_Id" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__52593CB8" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="PartsOfBody" Relationship="Self.FK__OrderDeta__Parts__534D60F1" FromRole="OrderDetails" ToRole="PartsOfBody" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Meat_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KilledMeat" Relationship="Self.FK__Orders__Meat_Id__4F7CD00D" FromRole="Orders" ToRole="KilledMeat" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__52593CB8" FromRole="Orders" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="PartsOfBody">
+          <Key>
+            <PropertyRef Name="ID_PartsOfBody" />
+          </Key>
+          <Property Name="ID_PartsOfBody" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Parts__534D60F1" FromRole="PartsOfBody" ToRole="OrderDetails" />
+        </EntityType>
+        <Association Name="FK__Orders__Meat_Id__4F7CD00D">
+          <End Role="KilledMeat" Type="Self.KilledMeat" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KilledMeat">
+              <PropertyRef Name="ID_KilledMeat" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Meat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__52593CB8">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Parts__534D60F1">
+          <End Role="PartsOfBody" Type="Self.PartsOfBody" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartsOfBody">
+              <PropertyRef Name="ID_PartsOfBody" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="PartsOfBody_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KilledMeat" EntityType="Self.KilledMeat" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="PartsOfBody" EntityType="Self.PartsOfBody" />
+          <AssociationSet Name="FK__Orders__Meat_Id__4F7CD00D" Association="Self.FK__Orders__Meat_Id__4F7CD00D">
+            <End Role="KilledMeat" EntitySet="KilledMeat" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__52593CB8" Association="Self.FK__OrderDeta__Order__52593CB8">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Parts__534D60F1" Association="Self.FK__OrderDeta__Parts__534D60F1">
+            <End Role="PartsOfBody" EntitySet="PartsOfBody" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AgaModelContainer" CdmEntityContainer="AgaEntities">
+          <EntitySetMapping Name="KilledMeat">
+            <EntityTypeMapping TypeName="AgaModel.KilledMeat">
+              <MappingFragment StoreEntitySet="KilledMeat">
+                <ScalarProperty Name="ID_KilledMeat" ColumnName="ID_KilledMeat" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CSureName" ColumnName="CSureName" />
+                <ScalarProperty Name="CMiddleName" ColumnName="CMiddleName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="AgaModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Id_OrdeDetail" ColumnName="Id_OrdeDetail" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="PartsOfBody_Id" ColumnName="PartsOfBody_Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="AgaModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Meat_Id" ColumnName="Meat_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartsOfBody">
+            <EntityTypeMapping TypeName="AgaModel.PartsOfBody">
+              <MappingFragment StoreEntitySet="PartsOfBody">
+                <ScalarProperty Name="ID_PartsOfBody" ColumnName="ID_PartsOfBody" />
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
